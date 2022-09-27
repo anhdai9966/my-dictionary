@@ -1,0 +1,19 @@
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 32px !important;
+  width: 32px !important;
+  &__spinner {
+    animation: spinnerSpin12 1.2s steps(12) infinite;
+  }
+}
+@keyframes spinnerSpin12 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

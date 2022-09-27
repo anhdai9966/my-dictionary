@@ -1,0 +1,59 @@
+.wrapper {
+  height: 32px;
+  padding: 2px;
+
+  background: #7575801f;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.btn {
+  height: 28px;
+  border-radius: 7px;
+
+  text-align: center;
+  font-family: 'SF Pro Text', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+
+  position: relative;
+
+  transition: transform .3s ease;
+
+  &:active {
+    transform: scale(.97);
+  }
+}
+
+.separator {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+
+  background: rgba(60, 60, 67, 0.36);
+  border-radius: 0.5px;
+
+  flex-shrink: 0;
+}
+
+.selector {
+  background: #fff;
+  box-shadow: 0px 3px 8px #0000001f, 0px 3px 1px #0000000a;
+}

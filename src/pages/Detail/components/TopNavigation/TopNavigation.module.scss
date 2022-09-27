@@ -1,0 +1,41 @@
+@mixin text-truncate($numberLine: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $numberLine;
+  -webkit-box-orient: vertical;
+}
+
+.wrapper {
+  height: 42px;
+  padding-inline: 96px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.accessory {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &-left {
+    left: 0;
+    color: #ADB3BC;
+  }
+
+  &-right {
+    color: #00BC4B;
+    right: 0;
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 17px;
+  @include text-truncate();
+}

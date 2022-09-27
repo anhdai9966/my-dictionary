@@ -1,0 +1,22 @@
+.text {
+  &-border {
+    position: relative;
+    font-weight: 600;
+  }
+  > p {
+    white-space: nowrap;
+  }
+  &-front {
+    position: relative;
+    color: #00BC4B;
+    text-align: center;
+  }
+  &-outline {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-text-stroke: 6px white;
+    user-select: none;
+  }
+}

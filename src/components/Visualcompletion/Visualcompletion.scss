@@ -1,0 +1,53 @@
+.visualcompletion {
+  --gradient-lavender: #d300c5;
+  --gradient-orange: #ff7a00;
+  --gradient-pink: #ff0169;
+  --gradient-purple: #7638fa;
+  --gradient-yellow: #ffd600;
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 250;
+  animation: 2s linear infinite RefreshedLoadingBarProgress, 0.5s ease-out forwards LoadingBarEnter;
+  // animation: 2s linear infinite RefreshedLoadingBarProgress;
+  background: linear-gradient(
+    to right,
+    var(--gradient-yellow),
+    var(--gradient-orange),
+    var(--gradient-pink),
+    var(--gradient-lavender),
+    var(--gradient-purple),
+    var(--gradient-yellow)
+  );
+  background-size: 500%;
+  height: 3px;
+  transform-origin: left;
+  width: 100%;
+  transform: scaleX(0);
+  transition: transform .5s ease-out;
+}
+@keyframes RefreshedLoadingBarProgress {
+  from {
+    background-position: 125% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+@keyframes LoadingBarEnter {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes LoadingBarProgress {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 125% 0;
+  }
+}

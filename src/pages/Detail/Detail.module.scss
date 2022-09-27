@@ -1,0 +1,44 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #767680, $alpha: .12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.content {
+  padding: 12px;
+
+  text-align: justify;
+  
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
+}
+
+.word {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.part-of-speech {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.wrap {
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
+}
+
+.example {
+  font-weight: 600;
+}
+
+.updated-at,
+.created-at {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
