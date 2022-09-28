@@ -36,3 +36,7 @@ export function addDash(str) {
 
     return '- ';
 }
+
+
+// export const getTimeFromDate  = (date) => date.toTimeString().slice(0, 8);
+export const getDate  = (date) => date.slice(10);

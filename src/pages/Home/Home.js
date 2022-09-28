@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { useStore } from '~/store';
 
+import icons from '~/assets/icons';
+
 import LayoutDefault from '~/layouts/LayoutDefault';
 import SearchField from '~/layouts/components/SearchField';
 
@@ -9,8 +11,6 @@ import Loading from '~/components/Loading';
 
 import SegmentedPicker from './components/SegmentedPicker';
 import Thread from './components/Thread';
-
-import icons from '~/assets/icons';
 
 function Home() {
     const { state } = useStore();
@@ -24,13 +24,14 @@ function Home() {
                 </h1>
 
                 <Link
-                    after="Add"
-                    className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out bg-gray-400/20 text-gray-600 px-4 py-1 after:content-[attr(after)] after:inline-block"
+                    className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out bg-gray-400/20 text-gray-600 px-4 py-1"
                     to="./add"
                 >
                     <svg className="h-5 w-5 fill-current">
                         <use href={icons + '#icon-plus'}></use>
                     </svg>
+
+                    <span>Add</span>
                 </Link>
             </div>
 
@@ -38,7 +39,7 @@ function Home() {
 
             <SegmentedPicker />
 
-            <div className="w-full h-full rounded-lg overflow-x-hidden overflow-y-auto bg-gray-100 relative">
+            <div className="w-full h-full rounded-lg overflow-x-hidden overflow-y-auto relative">
                 <div className="w-full flex flex-col gap-2">
                     {dictionary.length !== 0 &&
                         dictionary.map((word) => (

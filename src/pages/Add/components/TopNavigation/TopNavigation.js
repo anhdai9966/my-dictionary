@@ -1,9 +1,18 @@
-import { memo } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import icons from '~/assets/icons';
+import Loading from '~/components/Loading';
+import { useToggle } from '~/hooks';
 
-function TopNavigation({action}) {
+function TopNavigation({ action }) {
+    const [loading, handleLoading] = useToggle(true);
+
+    useEffect(() => {
+        if (loading) return;
+        action();
+    }, [loading]);
+
     return (
         <div className="h-20 flex items-center justify-center relative border-b">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
@@ -22,13 +31,24 @@ function TopNavigation({action}) {
                 Add Dictionary
             </p>
 
-            <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                <button className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out text-primary after:content-[attr(after)] after:inline-block" onClick={action}>
-                    Save
-                </button>
+            <div
+                className={`absolute top-1/2 -translate-y-1/2 ${
+                    loading ? 'right-0' : 'right-6'
+                }`}
+            >
+                {loading ? (
+                    <button
+                        className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out text-primary after:content-[attr(after)] after:inline-block"
+                        onClick={() => handleLoading(true)}
+                    >
+                        Save
+                    </button>
+                ) : (
+                    <Loading />
+                )}
             </div>
         </div>
     );
 }
 
-export default memo(TopNavigation);
+export default TopNavigation;

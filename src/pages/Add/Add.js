@@ -12,9 +12,12 @@ import icons from '~/assets/icons';
 import { useToggle } from '~/hooks';
 import { randomNumber } from '~/utils';
 import { uploadDictionary } from '~/services';
+import { actions, useStore } from '~/store';
+import { useNavigate } from 'react-router-dom';
 
 
 function Add() {
+    const {dispatch} = useStore()
     const [addTranslations, setAddTranslations] = useState([]);
     const [addExamples, setAddExamples] = useState([]);
     const [partOfSpeech, setPartOfSpeech] = useState('Select!');
@@ -24,6 +27,8 @@ function Add() {
 
     const wrapperRef = useRef();
     const formRef = useRef();
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         // Immediately invoked
@@ -36,13 +41,16 @@ function Add() {
                     return;
 
                 const res = await uploadDictionary(data);
-                console.log('🚀 res: ', res)
+
+                dispatch(actions.setDetailWord(res.word))
+                navigate(`/detail/${res.word.id}`)
             } catch (error) {
                 console.log(error);
             }
 
             return false;
         })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [submit]);
 
     const handleAddTranslation = (e) => {

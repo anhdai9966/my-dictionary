@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { publicRoutes } from './routes';
 
-import { windowHeight } from '~/helpers';
+import { windowHeight } from '~/utils';
 
 function App() {
     useEffect(() => {

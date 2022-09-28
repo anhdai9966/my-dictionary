@@ -26,7 +26,6 @@ function reducer(state, action) {
                 search: action.payload,
             };
         case SEARCH_DICTIONARY: {
-            console.log('🚀 action.payload: ', action.payload);
             return {
                 ...state,
                 dictionary: action.payload,
@@ -48,6 +47,7 @@ function reducer(state, action) {
         case DETAIL_WORD: {
             const id = action.payload;
             const result = state.dictionary.find((word) => word.id === id);
+            console.log('🚀 result: ', result)
             return {
                 ...state,
                 detail: result,

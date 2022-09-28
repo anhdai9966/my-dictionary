@@ -1,11 +1,10 @@
-import { memo, useCallback, useRef } from 'react';
+import { useRef } from 'react';
 
 import { useStore, actions } from '~/store';
 
-import { API_URL } from '~/configs';
-import { AJAX } from '~/helpers/helper';
-
 import icons from '~/assets/icons';
+import { loadDictionary } from '~/services';
+import { useNavigate } from 'react-router-dom';
 
 function SearchField() {
     const { state, dispatch } = useStore();
@@ -14,7 +13,9 @@ function SearchField() {
     const searchInputRef = useRef();
     const iconSearchRef = useRef();
 
-    const handleFocus = useCallback((e) => {
+    const navigate = useNavigate()
+
+    const handleFocus = (e) => {
         if (e.target.value !== '') {
             searchInputRef.current.select();
             searchInputRef.current.setSelectionRange(0, 99999);
@@ -22,34 +23,39 @@ function SearchField() {
         searchInputRef.current.style.paddingLeft = '8px';
         iconSearchRef.current.style.left = '-8px';
         iconSearchRef.current.style.opacity = '0';
-    }, []);
+    };
 
-    const handleBlur = useCallback(() => {
+    const handleBlur = () => {
         if (search) return;
         searchInputRef.current.style.paddingLeft = '30px';
         iconSearchRef.current.style.left = '8px';
         iconSearchRef.current.style.opacity = '.6';
-    }, []);
+    };
 
-    const handleClear = useCallback(() => {
+    const handleClear = () => {
         dispatch(actions.getSearch(''));
         searchInputRef.current.focus();
-    }, []);
+    };
 
-    const handleChange = useCallback((e) => {
+    const handleChange = (e) => {
         dispatch(actions.getSearch(e.target.value));
-    }, []);
+    };
 
-    const handleSubmit = useCallback(async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const dataArr = new FormData(e.target);
         const data = Object.fromEntries(dataArr);
         searchInputRef.current.blur();
         dispatch(actions.toggleLoading(true));
-        dispatch(actions.searchDictionary([]))
+        dispatch(actions.searchDictionary([]));
         try {
             if (!data.search.trim()) return;
-            const res = await AJAX(`${API_URL}?word=${encodeURIComponent(data.search)}`);
+
+            navigate('/')
+
+            const res = await loadDictionary(
+                `word=${encodeURIComponent(data.search)}`
+            );
 
             dispatch(actions.searchDictionary(res.words));
             dispatch(actions.toggleLoading(false));
@@ -57,7 +63,7 @@ function SearchField() {
             dispatch(actions.toggleLoading(false));
             console.log(error);
         }
-    }, []);
+    };
 
     return (
         <div className="h-9 overflow-hidden relative flex-shrink-0 text-[#3c3c43]">
@@ -96,4 +102,4 @@ function SearchField() {
     );
 }
 
-export default memo(SearchField);
+export default SearchField;

@@ -20,7 +20,7 @@ function SegmentedPicker() {
         <div className="h-8 p-[2px] rounded-lg relative flex flex-shrink-0 bg-[#757580]/[.12]">
             <div
                 ref={selected}
-                className="h-[calc(100%_-_4px)] mb-[2px] w-1/2 bg-white shadow-lg font-semibold text-sm rounded-[7px] absolute top-[2px] left-[2px] transition-[left] ease-in-out"
+                className="h-[calc(100%_-_4px)] mb-[2px] w-1/2 bg-white font-semibold text-sm rounded-[7px] absolute top-[2px] left-[2px] transition-[left] ease-in-out"
             ></div>
 
             <Button title={'Home'} onClick={tapHome} />

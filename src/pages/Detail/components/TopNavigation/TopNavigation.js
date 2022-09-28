@@ -5,7 +5,7 @@ import icons from '~/assets/icons';
 
 function TopNavigation({ title = '' }) {
     return (
-        <div className="h-20 flex items-center justify-center relative border-b">
+        <div className="h-20 flex items-center justify-center relative border-b px-20">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
                     after="Back"
