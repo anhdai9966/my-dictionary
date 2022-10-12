@@ -1,14 +1,14 @@
-import { memo } from "react";
+function Button({ btnConfig }) {
+    const { title, selected, handler } = btnConfig
 
-function Button({ title, onClick }) {
     return (
         <button
-            className="w-full h-full relative font-semibold text-sm rounded-[7px]"
-            onClick={(e) => onClick(e)}
+            className={`w-full h-full text-sm rounded-[7px] flex gap-1 items-center justify-center text-[#3c3c43]/60 ${selected && "bg-white"}`}
+            onClick={handler}
         >
             {title}
         </button>
     );
 }
 
-export default memo(Button);
+export default Button;

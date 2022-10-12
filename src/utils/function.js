@@ -10,8 +10,16 @@ export function windowHeight() {
     doc.style.setProperty('--window-height', `${window.innerHeight}px`);
 }
 
-export function capitalizeFirstLetter(string) {
-    return string.trim().charAt(0).toUpperCase() + string.trim().slice(1);
+export function convertCapitalizeFirstLetter(string) {
+    const str = string.trim()
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+export function convertLowercaseFirstLetter(string) {
+    const str = string.trim()
+    return str.charAt(0).toLowerCase() + str.slice(1);
+}
+export function convertLowercaseLetter(string) {
+    return string.trim().toLowerCase();
 }
 
 export const convertPartofSpeech = function (eng) {
@@ -37,6 +45,5 @@ export function addDash(str) {
     return '- ';
 }
 
-
 // export const getTimeFromDate  = (date) => date.toTimeString().slice(0, 8);
-export const getDate  = (date) => date.slice(10);
+export const getDate = (date) => new Date(date).getDate();

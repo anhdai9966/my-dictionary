@@ -1,86 +1,75 @@
 import {
-    GET_SEARCH,
-    ADD_BOOKMARK,
-    SEARCH_DICTIONARY,
-    DETAIL_WORD,
-    SET_DETAIL_WORD,
-    TOGGLE_LOADING,
-    ADD_DICTIONARY,
-    EDIT_DICTIONARY,
+    SET_DICTIONARY,
+    SET_SAVED,
+    SET_DETAIL,
+    SET_ISLOADING,
+    SET_ISSELECTED,
+    SET_SEARCH,
+    SET_EDIT,
 } from './constants';
 
-const initState = {
+const initialState = {
+    dictionary: { status: false, data: [] },
+    saved: JSON.parse(localStorage.getItem('saved')) || { status: false, data: [] },
+    detail: { status: false, data: {} },
+    edit: { status: false, data: {} },
     search: '',
-    dictionary: [],
-    detail: {},
-    loading: false,
-    addDictionary: {},
-    editDictionary: {},
+    isLoading: false,
+    isSelected: true,
 };
 
 function reducer(state, action) {
+
     switch (action.type) {
-        case GET_SEARCH:
-            return {
-                ...state,
-                search: action.payload,
-            };
-        case SEARCH_DICTIONARY: {
+        case SET_DICTIONARY:
             return {
                 ...state,
                 dictionary: action.payload,
             };
-        }
-        case ADD_BOOKMARK: {
-            const id = action.payload;
-            const update = state.dictionary.map((word) => {
-                if (word.id === id) {
-                    word.bookmark = !word.bookmark;
-                }
-                return word;
-            });
+
+        case SET_SAVED: {
+            localStorage.setItem('saved', JSON.stringify(action.payload))
+
             return {
                 ...state,
-                dictionary: update,
+                saved: action.payload,
             };
         }
-        case DETAIL_WORD: {
-            const id = action.payload;
-            const result = state.dictionary.find((word) => word.id === id);
-            console.log('🚀 result: ', result)
-            return {
-                ...state,
-                detail: result,
-            };
-        }
-        case SET_DETAIL_WORD: {
+
+        case SET_DETAIL:
             return {
                 ...state,
                 detail: action.payload,
             };
-        }
-        case TOGGLE_LOADING: {
+
+        case SET_EDIT:
             return {
                 ...state,
-                loading: action.payload,
+                edit: action.payload,
             };
-        }
-        case ADD_DICTIONARY: {
+
+        case SET_SEARCH:
             return {
                 ...state,
-                addDictionary: action.payload,
+                search: action.payload,
             };
-        }
-        case EDIT_DICTIONARY: {
+
+        case SET_ISLOADING:
             return {
                 ...state,
-                editDictionary: action.payload
+                isLoading: action.payload,
             };
-        }
+
+        case SET_ISSELECTED:
+            return {
+                ...state,
+                isSelected: action.payload,
+            };
+
         default:
             throw Error('💥💥💥 Invalid action!');
     }
 }
 
-export { initState };
+export { initialState };
 export default reducer;

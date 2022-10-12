@@ -1,32 +1,34 @@
-import { memo, useCallback, useRef } from 'react';
-import Button from './Button';
+import { IconDocTextMagnifyingGlass, IconTextBookClosed } from "~/components/Icons";
+import { actions, useStore } from "~/store";
+import Button from "./Button";
 
 function SegmentedPicker() {
-    const selected = useRef();
+    const { state, dispatch } = useStore();
+    const { isSelected } = state
 
-    const animateSelected = (e) => {
-        selected.current.style.left = e.target.offsetLeft + 'px';
-    };
+    const homeBtnHandler = () => {
+        dispatch(actions.setIsSelected(true))
+    }
 
-    const tapHome = useCallback((e) => {
-        animateSelected(e);
-    }, []);
-
-    const tapSaved = useCallback((e) => {
-        animateSelected(e);
-    }, []);
+    const savedBtnHandler = () => {
+        dispatch(actions.setIsSelected(false))
+    }
 
     return (
-        <div className="h-8 p-[2px] rounded-lg relative flex flex-shrink-0 bg-[#757580]/[.12]">
-            <div
-                ref={selected}
-                className="h-[calc(100%_-_4px)] mb-[2px] w-1/2 bg-white font-semibold text-sm rounded-[7px] absolute top-[2px] left-[2px] transition-[left] ease-in-out"
-            ></div>
+        <div className="h-8 p-[2px] rounded-lg relative flex flex-shrink-0 bg-[#757580]/[12%]">
+            <Button btnConfig={{
+                title: <><IconDocTextMagnifyingGlass className="w-3 h-3" />Home</>,
+                selected: isSelected,
+                handler: homeBtnHandler
+            }} />
 
-            <Button title={'Home'} onClick={tapHome} />
-            <Button title={'Saved'} onClick={tapSaved} />
+            <Button btnConfig={{
+                title: <><IconTextBookClosed className="w-3 h-3" />Saved</>,
+                selected: !isSelected,
+                handler: savedBtnHandler
+            }} />
         </div>
     );
 }
 
-export default memo(SegmentedPicker);
+export default SegmentedPicker;

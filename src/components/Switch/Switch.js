@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-function Switch({ onChange }) {
+function Switch({ onChange, checked = false }) {
     return (
         <div className="h-11 flex items-center">
             <input
@@ -8,6 +8,7 @@ function Switch({ onChange }) {
                 id="switch"
                 className="h-0 w-0 invisible peer"
                 onChange={onChange}
+                checked={checked}
             />
             <label
                 htmlFor="switch"
