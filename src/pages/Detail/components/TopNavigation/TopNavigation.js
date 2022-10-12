@@ -1,34 +1,44 @@
-import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import icons from '~/assets/icons';
+import { IconChevronBackward, SquareAndPencilIcon } from '~/components/Icons';
+import { actions, useStore } from '~/store';
+import { convertCapitalizeFirstLetter } from '~/utils';
 
-function TopNavigation({ title = '' }) {
+function TopNavigation({ word }) {
+    const { dispatch } = useStore();
+
+    const rightBtnHandler = () => {
+        dispatch(actions.setEdit({ status: true, data: word }))
+    }
+
     return (
         <div className="h-20 flex items-center justify-center relative border-b px-20">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
-                    after="Back"
-                    className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out text-gray-500 after:content-[attr(after)] after:inline-block"
+                    className="rounded-xl font-semibold flex items-center gap-2 text-gray-500"
                     to="/"
                 >
-                    <svg className="h-5 w-5 fill-current">
-                        <use href={icons + '#icon-left'}></use>
-                    </svg>
+                    <IconChevronBackward className="w-4 h-4" />
+                    <span>Back</span>
                 </Link>
             </div>
 
-            <p className="text-truncate-1 text-center font-semibold text-[17px]">
-                {title}
+            <p className="text-truncate-1 text-center font-semibold text-[17px] first-letter:uppercase">
+                {convertCapitalizeFirstLetter(word.word)}
             </p>
 
             <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                <button className="rounded-xl font-semibold flex items-center gap-2 hover:scale-[1.03] active:scale-[0.96] transition-transform ease-out text-primary after:content-[attr(after)] after:inline-block">
+                <Link
+                    className="rounded-xl font-semibold flex items-center gap-2 text-primary"
+                    to={`/edit/${word.id}`}
+                    onClick={() => rightBtnHandler(word)}
+                >
                     Edit
-                </button>
+                    <SquareAndPencilIcon className='w-5 h-5'/>
+                </Link>
             </div>
         </div>
     );
 }
 
-export default memo(TopNavigation);
+export default TopNavigation;

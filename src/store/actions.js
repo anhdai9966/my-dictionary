@@ -1,49 +1,44 @@
 import {
-    GET_SEARCH,
-    ADD_BOOKMARK,
-    SEARCH_DICTIONARY,
-    DETAIL_WORD,
-    SET_DETAIL_WORD,
-    TOGGLE_LOADING,
-    ADD_DICTIONARY,
-    EDIT_DICTIONARY,
+    SET_DICTIONARY,
+    SET_SAVED,
+    SET_DETAIL,
+    SET_EDIT,
+    SET_SEARCH,
+    SET_ISLOADING,
+    SET_ISSELECTED,
 } from './constants';
 
-export const getSearch = (payload) => ({
-    type: GET_SEARCH,
+export const setDictionary = (payload) => ({
+    type: SET_DICTIONARY,
     payload,
 });
 
-export const addBookmark = (payload) => ({
-    type: ADD_BOOKMARK,
+export const setSaved = (payload) => ({
+    type: SET_SAVED,
     payload,
 });
 
-export const searchDictionary = (payload) => ({
-    type: SEARCH_DICTIONARY,
+export const setDetail = (payload) => ({
+    type: SET_DETAIL,
     payload,
 });
 
-export const getDetailWord = (payload) => ({
-    type: DETAIL_WORD,
+export const setEdit = (payload) => ({
+    type: SET_EDIT,
     payload,
 });
 
-export const setDetailWord = (payload) => ({
-    type: SET_DETAIL_WORD,
+export const setSearch = (payload) => ({
+    type: SET_SEARCH,
     payload,
 });
 
-export const toggleLoading = (payload) => ({
-    type: TOGGLE_LOADING,
+export const setIsLoading = (payload) => ({
+    type: SET_ISLOADING,
     payload,
 });
 
-export const addDictionary = (payload) => ({
-    type: ADD_DICTIONARY,
-    payload,
-});
-export const editDictionary = (payload) => ({
-    type: EDIT_DICTIONARY,
+export const setIsSelected = (payload) => ({
+    type: SET_ISSELECTED,
     payload,
 });

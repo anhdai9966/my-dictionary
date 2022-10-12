@@ -1,9 +1,43 @@
+import { useEffect, useState } from 'react';
 import Switch from '~/components/Switch';
+import { actions, useStore } from '~/store';
 
 function TableRow() {
-    const handleBookmark = () => {
-        console.log('🚀 handleDelete: ', 'bookmark');
-    };
+    const { state, dispatch } = useStore();
+    const { saved, detail, dictionary } = state;
+
+    const [isSwitch, setIsSwitch] = useState(detail.data.saved)
+    const [onlyOne, setOnlyOne] = useState(false)
+
+    useEffect(() => {
+        if (!onlyOne) return;
+
+        let savedUpdate = saved.data;
+
+        dispatch(actions.setDetail({ ...detail, data: { ...detail.data, saved: isSwitch } }))
+
+        const dictionaryUpdate = dictionary.data.map(word => {
+            if (word.id === detail.data.id) {
+                word.saved = isSwitch
+            }
+            return word
+        })
+
+        dispatch(actions.setDictionary({ status: true, data: dictionaryUpdate }))
+
+        if (isSwitch) {
+            savedUpdate = [{ ...detail.data, saved: isSwitch }, ...saved.data]
+        } else {
+            savedUpdate = saved.data.filter(w => w.id !== detail.data.id)
+        }
+
+        dispatch(actions.setSaved({ status: !!savedUpdate.length, data: savedUpdate }))
+    }, [isSwitch])
+
+    const switchChangeHandler = () => {
+        setIsSwitch(!isSwitch)
+        setOnlyOne(true)
+    }
 
     const handleDelete = () => {
         console.log('🚀 handleDelete: ', 'delete');
@@ -23,9 +57,13 @@ function TableRow() {
             </button>
 
             <div className="flex items-center gap-3 text-gray-600 font-semibold">
-                <span>Add to Favorites</span>
+                <span>Add to Saved</span>
 
-                <Switch onChange={handleBookmark} />
+                <Switch
+                    // onChange={() => setIsSaved(!isSaved)}
+                    onChange={switchChangeHandler}
+                    checked={isSwitch}
+                />
             </div>
         </div>
     );

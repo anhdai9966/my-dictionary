@@ -5,7 +5,8 @@ module.exports = {
         extend: {
             animation: {
                 visual: 'RefreshedLoadingBarProgress 2s linear infinite,LoadingBarEnter .5s ease-out forwards',
-                spinner: 'SpinnerSpin12 1.2s steps(12) infinite;',
+                spinner8: 'SpinnerSpin .8s steps(8) infinite;',
+                spinner12: 'SpinnerSpin 1.2s steps(12) infinite;',
             },
             keyframes: {
                 RefreshedLoadingBarProgress: {
@@ -16,7 +17,7 @@ module.exports = {
                     '0%': { transform: 'scaleX(0)' },
                     '100%': { transform: 'scaleX(1)' },
                 },
-                SpinnerSpin12: {
+                SpinnerSpin: {
                     '0%': { transform: 'rotate(0deg)' },
                     '100%': { transform: 'rotate(360deg)' },
                 },
@@ -28,7 +29,7 @@ module.exports = {
                 display: ['SF Pro Display', 'sans-serif'],
             },
             colors: {
-                primary: '#34C759',
+                primary: '#007AFF',
             },
         },
     },

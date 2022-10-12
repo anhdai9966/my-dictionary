@@ -1,34 +1,34 @@
 import { Link } from 'react-router-dom';
 
-import { IconChevronBackward, IconPlus, IconSpinner8 } from '~/components/Icons';
+import { ArrowUpDocIcon, IconChevronBackward, IconSpinner8 } from '~/components/Icons';
 import { useStore } from '~/store';
 
 function TopNavigation({ onClickRight }) {
     const { state } = useStore()
-    const { isLoading } = state
+    const { isLoading, edit } = state
 
     return (
         <div className="h-20 flex items-center justify-center relative">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
                     className="rounded-xl flex items-center gap-2 text-[#333] "
-                    to="/">
+                    to={`/detail/${edit.data.id}`}>
                     <IconChevronBackward className="h-4 w-4" />
                     <span className='font-semibold'>Back</span>
                 </Link>
             </div>
 
             <p className="text-truncate text-center font-semibold">
-                Add Dictionary
+                Edit Dictionary
             </p>
 
             <div className="absolute top-1/2 -translate-y-1/2 right-0">
                 {!isLoading && (
                     <button
-                        className="flex items-center gap-2 text-primary rounded-xl"
+                        className="rounded-xl flex items-center gap-2 text-primary"
                         onClick={onClickRight}>
-                        <span className='font-semibold'>Add</span>
-                        <IconPlus className="h-6 w-6" />
+                        <span className='font-semibold'>Update</span>
+                        <ArrowUpDocIcon className="w-5 h-5" />
                     </button>
                 )}
 

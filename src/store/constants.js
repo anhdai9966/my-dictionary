@@ -1,8 +1,7 @@
-export const GET_SEARCH = 'get_search';
-export const ADD_BOOKMARK = 'add_bookmark'
-export const SEARCH_DICTIONARY = 'search_dictionary'
-export const DETAIL_WORD = 'detail_word'
-export const SET_DETAIL_WORD = 'set_detail_word'
-export const TOGGLE_LOADING = 'toggle_loading'
-export const ADD_DICTIONARY = 'add_dictionary'
-export const EDIT_DICTIONARY = 'edit_dictionary'
+export const SET_DICTIONARY = 'set_dictionary';
+export const SET_SAVED = 'set_saved'
+export const SET_DETAIL = 'set_detail';
+export const SET_EDIT = 'set_edit'
+export const SET_SEARCH = 'set_search';
+export const SET_ISLOADING = 'set_isLoading';
+export const SET_ISSELECTED = 'set_isSelected';
