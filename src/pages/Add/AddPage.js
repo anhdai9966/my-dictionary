@@ -33,6 +33,8 @@ function AddPage() {
         const doc = document.documentElement;
         doc.style.setProperty('--word-textarea-height', `${wordTextareaRef.current.value ? wordTextareaRef.current.scrollHeight : 36}px`);
         doc.style.setProperty('--translation-textarea-height', `${translationTextareaRef.current.value ? translationTextareaRef.current.scrollHeight : 36}px`);
+
+        wordTextareaRef.current.focus();
     }, [])
 
     // xử lý auto height 
@@ -74,11 +76,15 @@ function AddPage() {
         setIsSaved(!isSaved);
     };
 
-    const textareaKeyDownHandler = (e) => {
-        if (e.code === 'Enter') {
-            dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: `${edit.data.note}\n` } }))
-        }
-    }
+    // const nodeTextareaKeyUpHandler = (e) => {
+    //     if (e.code === 'Enter') {
+    //         const characterArr = e.target.value.split('')
+    //         if (characterArr[characterArr.length - 1] === '\n') {
+    //             console.log('run')
+    //             dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: `${edit.data.note}\n` } }))
+    //         }
+    //     }
+    // }
 
     const resetAllTextarea = () => {
         dispatch(actions.setEdit({ status: false, data: {} }))
@@ -130,7 +136,7 @@ function AddPage() {
         <LayoutDefault>
             <TopNavigation onClickRight={rightBtnSubmissionHandler} />
 
-            {isValidation && <p className='bg-[#FF3B30]/90 rounded px-3 py-1 font-semibold text-white text-xs absolute top-12 left-1/2 -translate-x-1/2 '>Bạn phải nhập đủ 3 trường đầu tiên</p>}
+            {isValidation && <p className='bg-[#FF3B30] rounded px-3 py-1 font-semibold text-white text-xs absolute top-5 text-center left-1/2 -translate-x-1/2 '>Bạn phải nhập đủ 3 trường đầu tiên</p>}
 
             <div className="w-full h-full rounded-lg overflow-x-hidden scroll-smooth">
                 <form
@@ -181,7 +187,7 @@ function AddPage() {
                         className="h-full min-h-[calc(100%_-_156px)] w-full px-2 py-[6px] rounded-lg break-words resize-none outline-none leading-6 bg-[#767680]/[.12]"
                         value={edit.data.note}
                         onChange={(e) => dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: e.target.value } }))}
-                        onKeyDown={textareaKeyDownHandler}
+                        // onKeyUp={nodeTextareaKeyUpHandler}
                     ></textarea>
                 </form>
             </div>

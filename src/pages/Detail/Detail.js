@@ -69,7 +69,7 @@ function Detail() {
                     <SearchField />
 
                     <div className="w-full h-full rounded-lg overflow-x-hidden overflow-y-auto bg-[#767680]/[.12]">
-                        <div className="w-full flex flex-col gap-2 p-3 text-justify">
+                        <div className="w-full flex flex-col gap-2 p-3">
                             <p className="font-semibold first-letter:uppercase">{detail.data.word}</p>
 
                             <p className="italic text-sm">
@@ -78,8 +78,9 @@ function Detail() {
 
                             <p className="first-letter:uppercase">{detail.data.translation}</p>
 
-                            <div className='font-semibold text-primary flex gap-2 items-center'><div className='h-2 w-2 rounded-md bg-primary'></div>Ghi chú:</div>
-                            <ReactMarkdown className='[&_h1]:font-semibold [&_h1]:text-lg'>{detail.data.note}</ReactMarkdown>
+                            {!!detail.data.note && <div className='font-semibold text-primary flex gap-2 items-center'><div className='h-2 w-2 rounded-md bg-primary'></div>Ghi chú:</div>}
+                            
+                            <ReactMarkdown className='[&_h1]:font-semibold [&_h1]:text-lg [&_hr]:border-slate-900/30 flex flex-col gap-1'>{detail.data.note}</ReactMarkdown>
 
                             <div className="flex flex-col items-end gap-1 text-sm italic">
                                 <CreatedAt createdAt={detail.data.created_at} />

@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { actions, useStore } from '~/store';
 
 import LayoutDefault from '~/layouts/LayoutDefault';
-import Loading from '~/components/Loading';
 import SearchField from '~/components/SearchField';
-import { IconCharacterBookClosedFill, IconPaperplaneFill, IconPlus, IconPlusCircle, IconSearch } from '~/components/Icons';
+import { IconCharacterBookClosedFill, IconPaperplaneFill, IconPlus, IconPlusCircle, IconSearch, IconSpinner12 } from '~/components/Icons';
 
 import Thread from './components/Thread';
 import SegmentedPicker from './components/SegmentedPicker';
@@ -52,7 +51,11 @@ function HomePage() {
             <SegmentedPicker />
 
             <div className="w-full h-full rounded-lg overflow-x-hidden overflow-y-auto relative">
-                {isLoading && <Loading />}
+                {isLoading && (
+                    <div className="inline-block absolute left-1/2 top-1/2 -translate-y-2/4 -translate-x-2/4">
+                        <IconSpinner12 className="w-6 h-6 animate-spinner12" />
+                    </div>
+                )}
 
                 {!dictionaryView.data.length && !isLoading && (
                     <div className="flex flex-col items-center justify-center gap-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

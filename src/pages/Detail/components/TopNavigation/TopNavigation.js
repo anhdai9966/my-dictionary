@@ -15,11 +15,11 @@ function TopNavigation({ word }) {
         <div className="h-20 flex items-center justify-center relative border-b px-20">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
-                    className="rounded-xl font-semibold flex items-center gap-2 text-gray-500"
+                    className="rounded-xl font-semibold flex items-center gap-1 text-gray-500"
                     to="/"
                 >
                     <IconChevronBackward className="w-4 h-4" />
-                    <span>Back</span>
+                    <span className='font-semibold'>Back</span>
                 </Link>
             </div>
 

@@ -18,6 +18,7 @@ function EditPage() {
 
     const [isSaved, setIsSaved] = useState(edit.data.saved);
     const [isOpenMore, setIsOpenMore] = useState(false);
+    const [isValidation, setIsValidation] = useState(false)
 
     const formRef = useRef();
     const wordTextareaRef = useRef();
@@ -72,11 +73,15 @@ function EditPage() {
         setIsSaved(!isSaved);
     };
 
-    const textareaKeyDownHandler = (e) => {
-        if (e.code === 'Enter') {
-            dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: `${edit.data.note}\n` } }))
-        }
-    }
+    // const noteTextareaKeyUpHandler = (e) => {
+    //     if (e.code === 'Enter') {
+    //         const characterArr = e.target.value.split('')
+    //         if (characterArr[characterArr.length - 1] === '\n') {
+    //             console.log('run')
+    //             dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: `${edit.data.note}\n` } }))
+    //         }
+    //     }
+    // }
 
     const resetAllTextarea = () => {
         dispatch(actions.setEdit({ status: false, data: {} }))
@@ -88,7 +93,8 @@ function EditPage() {
 
     const rightBtnSubmissionHandler = async () => {
         try {
-            if (!wordTextareaRef.current.value && !translationTextareaRef.current.value && !partOfSpeechTextareaRef.current.value) {
+            if (!wordTextareaRef.current.value || !translationTextareaRef.current.value || !partOfSpeechTextareaRef.current.value) {
+                setIsValidation(true)
                 return 
             };
     
@@ -125,6 +131,8 @@ function EditPage() {
     return (
         <LayoutDefault>
             <TopNavigation onClickRight={rightBtnSubmissionHandler} />
+
+            {isValidation && <p className='bg-[#FF3B30] rounded px-3 py-1 font-semibold text-white text-xs absolute top-5 text-center left-1/2 -translate-x-1/2 '>Bạn phải nhập đủ 3 trường đầu tiên</p>}
 
             <div className="w-full h-full rounded-lg overflow-x-hidden scroll-smooth">
                 <form
@@ -175,7 +183,7 @@ function EditPage() {
                         className="h-full min-h-[calc(100%_-_156px)] w-full px-2 py-[6px] rounded-lg break-words resize-none outline-none leading-6 bg-[#767680]/[.12]"
                         value={edit.data.note}
                         onChange={(e) => dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: e.target.value } }))}
-                        onKeyDown={textareaKeyDownHandler}
+                        // onKeyUp={noteTextareaKeyUpHandler}
                     ></textarea>
                 </form>
             </div>

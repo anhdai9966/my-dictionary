@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { ref, query, orderByChild, startAt, endAt, get } from 'firebase/database';
+import { ref, query, orderByChild, startAt, endAt, get, limitToLast } from 'firebase/database';
 import { isEmpty } from "@firebase/util";
 
 import { database } from '~/utils/firebase';
@@ -52,7 +52,8 @@ function SearchField() {
             ref(database, 'dictionary/'),
             orderByChild('word'),
             startAt(queryText),
-            endAt(queryText + '\uf8ff')
+            endAt(queryText + '\uf8ff'),
+            limitToLast(20)
         );
 
         const snapshot = await get(queryDictionary)

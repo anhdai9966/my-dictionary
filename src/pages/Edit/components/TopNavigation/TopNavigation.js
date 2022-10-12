@@ -11,7 +11,7 @@ function TopNavigation({ onClickRight }) {
         <div className="h-20 flex items-center justify-center relative">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
-                    className="rounded-xl flex items-center gap-2 text-[#333] "
+                    className="rounded-xl flex items-center gap-1 text-[#333] "
                     to={`/detail/${edit.data.id}`}>
                     <IconChevronBackward className="h-4 w-4" />
                     <span className='font-semibold'>Back</span>
