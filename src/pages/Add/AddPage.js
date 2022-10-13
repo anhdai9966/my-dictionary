@@ -47,7 +47,7 @@ function AddPage() {
     // xử lý disable enter
     const textareaKeyUpHandler = (e) => {
         if (e.key === 'Enter') {
-            const fixWord = e.target.value.split('').map(w => w === '\n' ? ' ' : w).join('')
+            const fixWord = e.target.value.split('').map(w => w === '\n' ? '' : w).join('')
 
             if (e.target.name === "word") {
                 dispatch(actions.setEdit({ status: true, data: { ...edit.data, word: fixWord } }))

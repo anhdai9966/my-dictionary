@@ -27,7 +27,7 @@ function TopNavigation({ onClickRight }) {
                     <button
                         className="flex items-center gap-2 text-primary rounded-xl"
                         onClick={onClickRight}>
-                        <span className='font-semibold'>Add</span>
+                        <span className='font-semibold'>Save</span>
                         <IconPlus className="h-6 w-6" />
                     </button>
                 )}

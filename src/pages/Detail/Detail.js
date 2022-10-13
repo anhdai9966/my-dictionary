@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { child, get, ref } from 'firebase/database';
+import { isEmpty } from '@firebase/util';
+import ReactMarkdown from 'react-markdown'
 
+import { database } from '~/utils/firebase';
 import { useStore, actions } from '~/store';
 
 import LayoutDefault from '~/layouts/LayoutDefault';
+import SearchField from '~/components/SearchField';
+import { IconSpinner12 } from '~/components/Icons';
 
 import TopNavigation from './components/TopNavigation';
 import TableRow from './components/TableRow';
-import { useParams } from 'react-router-dom';
 import CreatedAt from './components/CreatedAt';
 import UpdatedAt from './components/UpdatedAt';
 import ErrorPage from '../Error';
-import SearchField from '~/components/SearchField';
-
-import { database } from '~/utils/firebase';
-import { child, get, ref } from 'firebase/database';
-import { isEmpty } from '@firebase/util';
-import { IconSpinner12 } from '~/components/Icons';
-
-import ReactMarkdown from 'react-markdown'
 
 function Detail() {
     const { state, dispatch } = useStore();
@@ -92,7 +90,7 @@ function Detail() {
                         </div>
                     </div>
 
-                    <TableRow />
+                    <TableRow word={detail.data}/>
                 </>
             )}
         </LayoutDefault>

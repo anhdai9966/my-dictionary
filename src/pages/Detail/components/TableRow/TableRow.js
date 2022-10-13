@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SquareAndPencilIcon } from '~/components/Icons';
 import Switch from '~/components/Switch';
 import { actions, useStore } from '~/store';
 
-function TableRow() {
+function TableRow({ word }) {
     const { state, dispatch } = useStore();
     const { saved, detail, dictionary } = state;
 
@@ -39,13 +41,25 @@ function TableRow() {
         setOnlyOne(true)
     }
 
-    const handleDelete = () => {
-        console.log('🚀 handleDelete: ', 'delete');
-    };
+    const rightBtnHandler = () => {
+        dispatch(actions.setEdit({ status: true, data: word }))
+    }
+
+    // const handleDelete = () => {
+    //     console.log('🚀 handleDelete: ', 'delete');
+    // };
 
     return (
         <div className="w-full h-20 flex justify-between items-center border-t">
-            <button
+            <Link
+                className="rounded-xl font-semibold flex items-center gap-2 text-primary"
+                to={`/edit/${word.id}`}
+                onClick={() => rightBtnHandler(word)}
+            >
+                <SquareAndPencilIcon className='w-5 h-5' />
+                <span>Edit</span>
+            </Link>
+            {/* <button
                 className="flex items-center gap-3 text-[#FF3B30] font-semibold rounded-3xl"
                 onClick={handleDelete}
             >
@@ -54,7 +68,7 @@ function TableRow() {
                 </div>
 
                 <span>Delete</span>
-            </button>
+            </button> */}
 
             <div className="flex items-center gap-3 text-gray-600 font-semibold">
                 <span>Add to Saved</span>

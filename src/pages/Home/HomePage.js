@@ -39,7 +39,7 @@ function HomePage() {
 
                 <Link
                     className="bg-[#767680]/[12%] rounded-xl px-2 py-1"
-                    to="./add"
+                    to="/add"
                     onClick={addLinkHandler}
                 >
                     <IconPlus className="h-6 w-6 text-primary" />

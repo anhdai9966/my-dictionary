@@ -30,10 +30,10 @@ function Thread({ word }) {
     return (
         <div className="flex bg-[#757580]/[.12] hover:bg-gray-200 rounded-lg overflow-hidden flex-shrink-0 relative">
             <button
-                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-gray-300/70 absolute top-0 left-0"
+                className="w-6 h-full p-2 flex items-center justify-center flex-shrink-0 hover:bg-gray-300/70 absolute top-0 left-0 rounded-lg"
                 onClick={() => addSavedHandler(word)}
             >
-                <div className={`w-3 h-3 rounded-full ${word.saved ? 'bg-primary' : 'bg-gray-400/60'}`}></div>
+                <div className={`rounded w-full h-full ${word.saved ? 'bg-primary' : 'bg-gray-400/60'}`}></div>
             </button>
 
             <Link

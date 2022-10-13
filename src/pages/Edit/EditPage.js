@@ -14,7 +14,7 @@ import { ArrowCounterClockWiseIcon, ChevronDownIcon } from '~/components/Icons'
 
 function EditPage() {
     const { state, dispatch } = useStore();
-    const { edit } = state;
+    const { edit, dictionary } = state;
 
     const [isSaved, setIsSaved] = useState(edit.data.saved);
     const [isOpenMore, setIsOpenMore] = useState(false);
@@ -44,7 +44,7 @@ function EditPage() {
     // xử lý disable enter
     const textareaKeyUpHandler = (e) => {
         if (e.key === 'Enter') {
-            const fixWord = e.target.value.split('').map(w => w === '\n' ? ' ' : w).join('')
+            const fixWord = e.target.value.split('').map(w => w === '\n' ? '' : w).join('')
 
             if (e.target.name === "word") {
                 dispatch(actions.setEdit({ status: true, data: { ...edit.data, word: fixWord } }))
@@ -95,11 +95,11 @@ function EditPage() {
         try {
             if (!wordTextareaRef.current.value || !translationTextareaRef.current.value || !partOfSpeechTextareaRef.current.value) {
                 setIsValidation(true)
-                return 
+                return
             };
-    
+
             dispatch(actions.setIsLoading(true));
-        
+
             const req = {
                 id: edit.data.id,
                 word: convertLowercaseLetter(edit.data.word),
@@ -118,6 +118,15 @@ function EditPage() {
                     saved: isSaved
                 }
             }));
+
+            const dictionaryUpdate = dictionary.data.map(word => {
+                if (word.id === req.id) {
+                    word = { ...req, saved: isSaved }
+                }
+                return word
+            })
+
+            dispatch(actions.setDictionary({ status: true, data: dictionaryUpdate }))
 
             navigate(`/detail/${req.id}`);
         } catch (error) {
@@ -183,7 +192,7 @@ function EditPage() {
                         className="h-full min-h-[calc(100%_-_156px)] w-full px-2 py-[6px] rounded-lg break-words resize-none outline-none leading-6 bg-[#767680]/[.12]"
                         value={edit.data.note}
                         onChange={(e) => dispatch(actions.setEdit({ status: true, data: { ...edit.data, note: e.target.value } }))}
-                        // onKeyUp={noteTextareaKeyUpHandler}
+                    // onKeyUp={noteTextareaKeyUpHandler}
                     ></textarea>
                 </form>
             </div>
