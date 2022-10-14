@@ -200,9 +200,9 @@ function AddPage() {
             )}
 
             <div className='h-16'>
-                <div className="px-2 flex items-center justify-between gap-3 text-gray-600 font-semibold">
+                <div className="flex items-center justify-between gap-3 text-gray-600 font-semibold">
                     <button
-                        className='bg-[#767680]/[12%] rounded-xl px-2 py-1'
+                        className='bg-[#767680]/[12%] rounded-xl px-3 py-1'
                         onClick={resetAllTextarea}
                     >
                         <ArrowCounterClockWiseIcon className="w-6 h-6" />

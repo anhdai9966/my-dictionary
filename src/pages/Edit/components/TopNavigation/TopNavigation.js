@@ -11,10 +11,10 @@ function TopNavigation({ onClickRight }) {
         <div className="h-20 flex items-center justify-center relative">
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                 <Link
-                    className="rounded-xl flex items-center gap-1 text-[#333] "
+                    className="flex items-center gap-1 bg-[#767680]/[12%] rounded-xl px-3 py-2"
                     to={`/detail/${edit.data.id}`}>
-                    <IconChevronBackward className="h-4 w-4" />
-                    <span className='font-semibold'>Back</span>
+                    <IconChevronBackward className="h-5 w-5 text-[#3c3c43]/60" />
+                    {/* <span className='font-semibold'>Back</span> */}
                 </Link>
             </div>
 
@@ -25,10 +25,10 @@ function TopNavigation({ onClickRight }) {
             <div className="absolute top-1/2 -translate-y-1/2 right-0">
                 {!isLoading && (
                     <button
-                        className="rounded-xl flex items-center gap-2 text-primary"
+                        className="flex items-center gap-2 bg-[#767680]/[12%] rounded-xl px-3 py-2"
                         onClick={onClickRight}>
-                        <span className='font-semibold'>Update</span>
-                        <ArrowUpDocIcon className="w-5 h-5" />
+                        {/* <span className='font-semibold'>Update</span> */}
+                        <ArrowUpDocIcon className="w-5 h-5 text-primary" />
                     </button>
                 )}
 

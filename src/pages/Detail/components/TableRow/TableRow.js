@@ -52,12 +52,12 @@ function TableRow({ word }) {
     return (
         <div className="w-full h-20 flex justify-between items-center border-t">
             <Link
-                className="rounded-xl font-semibold flex items-center gap-2 text-primary"
+                className="font-semibold flex items-center gap-2 bg-[#767680]/[12%] rounded-xl px-3 py-1"
                 to={`/edit/${word.id}`}
                 onClick={() => rightBtnHandler(word)}
             >
-                <SquareAndPencilIcon className='w-5 h-5' />
-                <span>Edit</span>
+                <SquareAndPencilIcon className='w-5 h-5 text-[#3c3c43]/60' />
+                {/* <span>Edit</span> */}
             </Link>
             {/* <button
                 className="flex items-center gap-3 text-[#FF3B30] font-semibold rounded-3xl"
@@ -70,7 +70,7 @@ function TableRow({ word }) {
                 <span>Delete</span>
             </button> */}
 
-            <div className="flex items-center gap-3 text-gray-600 font-semibold">
+            <div className="flex items-center gap-3 text-[#3c3c43]/60 font-semibold">
                 <span>Add to Saved</span>
 
                 <Switch
